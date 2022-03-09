@@ -21,14 +21,10 @@ class UsersRepository implements IUsersRepository {
   }
 
   create({ name, email }: ICreateUserDTO): User {
-    const userExists = this.findByEmail(email);
-    if (userExists) {
-      throw new Error("User already exists");
-    }
     const newUser: User = {
       admin: false,
-      email,
-      name,
+      email: email,
+      name: name,
       id: uuidV4(),
       created_at: new Date(),
       updated_at: new Date(),
